@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate BMI App</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Particles -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+    <style>
+        /*
+        /* 🌌 PARTICLE BACKGROUND 
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(-45deg, #ff416c, #ff4b2b, #1fa2ff, #12d8fa, #a6ffcb);
+            background-size: 400% 400%;
+            animation: bgMove 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 350px;
+            text-align: center;
+            color: white;
+
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6),
+                0 0 50px rgba(0, 255, 255, 0.4),
+                0 0 80px rgba(0, 255, 255, 0.2);
+        }
+
+        
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+        }
+
+       
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #00c9ff;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0099cc;
+        }
+
+       
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PARTICLES -->
+    <div id="particles-js"></div>
+
+    <div class="card">
+        <h2>🔥 BMI PRO TRACKER</h2>
+
+        <input type="number" id="weight" placeholder="Weight (kg)">
+
+        <select id="unit">
+            <option value="cm">Centimeter</option>
+            <option value="m">Meter</option>
+            <option value="ft">Feet</option>
+        </select>
+
+        <input type="number" id="height" placeholder="Enter height">
+
+        <button onclick="calculateBMI()">Calculate</button>
+
+        <div id="result"></div>
+
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script>
+
+        // let chart;
+
+        // // 🔄 CHANGE PLACEHOLDER
+        // document.getElementById("unit").addEventListener("change", function () {
+        //     let input = document.getElementById("height");
+
+        //     if (this.value === "cm") input.placeholder = "e.g. 170";
+        //     else if (this.value === "m") input.placeholder = "e.g. 1.75";
+        //     else input.placeholder = "e.g. 5.9";
+        // });
+
+        // // 🧠 BMI CALCULATION
+        // function calculateBMI() {
+        //     let weight = parseFloat(document.getElementById("weight").value);
+        //     let height = parseFloat(document.getElementById("height").value);
+        //     let unit = document.getElementById("unit").value;
+
+        //     if (!weight || !height) {
+        //         alert("Enter valid values!");
+        //         return;
+        //     }
+
+        //     let heightM;
+
+        //     if (unit === "cm") heightM = height / 100;
+        //     else if (unit === "m") heightM = height;
+        //     else heightM = height * 0.3048;
+
+        //     let bmi = (weight / (heightM * heightM)).toFixed(1);
+
+        //     let category = "";
+        //     if (bmi < 18.5) category = "Underweight";
+        //     else if (bmi <= 24.9) category = "Normal";
+        //     else if (bmi <= 29.9) category = "Overweight";
+        //     else category = "Obese";
+
+        //     document.getElementById("result").innerHTML =
+        //         `BMI: <b>${bmi}</b> (${category})`;
+
+        //     drawChart(bmi);
+        // }
+
+        // // 📊 PIE CHART
+        // function drawChart(bmi) {
+        //     let ctx = document.getElementById("chart");
+
+        //     if (chart) chart.destroy();
+
+        //     chart = new Chart(ctx, {
+        //         type: "pie",
+        //         data: {
+        //             labels: ["Underweight", "Normal", "Overweight", "Obese", "You"],
+        //             datasets: [{
+        //                 data: [18.5, 24.9, 29.9, 35, bmi],
+        //                 backgroundColor: [
+        //                     "#f39c12",
+        //                     "#2ecc71",
+        //                     "#e67e22",
+        //                     "#e74c3c",
+        //                     "#3498db"
+        //                 ]
+        //             }]
+        //         }
+        //     });
+        // }
+
+        // // ✨ PARTICLES CONFIG
+        // particlesJS("particles-js", {
+        //     particles: {
+        //         number: { value: 80 },
+        //         color: { value: "#00ffff" },
+        //         shape: { type: "circle" },
+        //         opacity: { value: 0.5 },
+        //         size: { value: 3 },
+        //         move: { enable: true, speed: 2 }
+        //     }
+        // });
+
+    </script>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Quantum Pro</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #f093fb;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0f172a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* 🌌 ANIMATED MESH GRADIENT BACKGROUND */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            filter: blur(80px);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from {
+                transform: translate(-20%, -20%);
+            }
+
+            to {
+                transform: translate(20%, 20%);
+            }
+        }
+
+        /* 🧊 NEO-GLASS CARD */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        /* INPUT STYLING */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: 2px solid var(--primary);
+            border: none;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: #0f172a;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            box-shadow: 0 0 20px var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* RESULTS AREA */
+        .result-val {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow">
+        <div class="blob"></div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2 style="margin-top:0"><i data-lucide="activity"></i> QUANTUM BMI</h2>
+
+            <div style="display: flex; gap: 10px;">
+                <div class="input-group" style="flex:1">
+                    <label>System</label>
+                    <select id="unitSystem" onchange="toggleUnits()">
+                        <option value="metric">Metric (kg/cm)</option>
+                        <option value="imperial">Imperial (lb/in)</option>
+                    </select>
+                </div>
+                <div class="input-group" style="flex:1">
+                    <label>Gender</label>
+                    <select id="gender">
+                        <option value="m">Male</option>
+                        <option value="f">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="wLabel">Weight (kg)</label>
+                <input type="number" id="weight" placeholder="70" step="0.1">
+            </div>
+
+            <div class="input-group">
+                <label id="hLabel">Height (cm)</label>
+                <input type="number" id="height" placeholder="175">
+            </div>
+
+            <button class="btn-main" onclick="calculateBMI()">Calculate Analysis</button>
+
+            <div class="history-list" id="history">
+            </div>
+        </div>
+
+        <div class="card" id="resultsCard" style="text-align: center;">
+            <label>Your Score</label>
+            <div id="bmiVal" class="result-val">--.-</div>
+            <div id="bmiCategory" class="badge">Enter Data</div>
+
+            <div style="margin-top: 20px;">
+                <canvas id="gaugeChart"></canvas>
+            </div>
+
+            <div id="advice" style="margin-top: 20px; font-size: 0.9rem; color: #cbd5e1; line-height: 1.6;">
+                Fill in your metrics to receive a personalized health projection.
+            </div>
+
+            <div id="idealWeight" style="margin-top: 15px; font-weight: bold; color: var(--primary);"></div>
+        </div>
+    </div>
+
+    <script>
+        let gaugeChart;
+
+        // Initialize Icons
+        lucide.createIcons();
+
+        function toggleUnits() {
+            const system = document.getElementById('unitSystem').value;
+            document.getElementById('wLabel').innerText = system === 'metric' ? 'Weight (kg)' : 'Weight (lb)';
+            document.getElementById('hLabel').innerText = system === 'metric' ? 'Height (cm)' : 'Height (in)';
+        }
+
+        function calculateBMI() {
+            const system = document.getElementById('unitSystem').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const gender = document.getElementById('gender').value;
+
+            if (!weight || !height) return alert("Please fill all fields!");
+
+            let bmi;
+            if (system === 'metric') {
+                bmi = weight / ((height / 100) ** 2);
+            } else {
+                bmi = (weight / (height ** 2)) * 703;
+            }
+
+            bmi = bmi.toFixed(1);
+            updateUI(bmi, weight, height, system, gender);
+            saveHistory(bmi);
+        }
+
+        function updateUI(bmi, w, h, system, gender) {
+            const display = document.getElementById('bmiVal');
+            display.innerText = bmi;
+
+            let color, cat;
+            if (bmi < 18.5) { cat = "Underweight"; color = "#facc15"; }
+            else if (bmi < 25) { cat = "Healthy"; color = "#4ade80"; }
+            else if (bmi < 30) { cat = "Overweight"; color = "#fb923c"; }
+            else { cat = "Obese"; color = "#ef4444"; }
+
+            const badge = document.getElementById('bmiCategory');
+            badge.innerText = cat;
+            badge.style.background = color;
+            badge.style.color = "#000";
+
+            // Ideal Weight Calculation (Miller Formula)
+            let ideal;
+            const hInches = system === 'metric' ? h * 0.3937 : h;
+            if (gender === 'm') ideal = 56.2 + 1.41 * (hInches - 60);
+            else ideal = 53.1 + 1.36 * (hInches - 60);
+
+            const idealDisplay = system === 'metric' ? ideal.toFixed(1) + ' kg' : (ideal * 2.204).toFixed(1) + ' lb';
+            document.getElementById('idealWeight').innerText = `Target Weight: ${idealDisplay}`;
+
+            // Dynamic Advice
+            const adviceBox = document.getElementById('advice');
+            if (cat === "Healthy") adviceBox.innerText = "Fantastic! You're in the optimal range. Maintain this with 150 min of cardio weekly.";
+            else if (cat === "Overweight") adviceBox.innerText = "Slightly above range. Focus on a 10% caloric deficit and strength training.";
+            else adviceBox.innerText = "Consult with a health professional to create a sustainable nutrition and activity roadmap.";
+
+            drawGauge(bmi, color);
+        }
+
+        function drawGauge(bmi, color) {
+            const ctx = document.getElementById('gaugeChart').getContext('2d');
+            if (gaugeChart) gaugeChart.destroy();
+
+            gaugeChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [bmi, 40 - bmi],
+                        backgroundColor: [color, 'rgba(255,255,255,0.05)'],
+                        borderWidth: 0,
+                        circumference: 180,
+                        rotation: 270,
+                        cutout: '85%'
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    animation: { animateRotate: true }
+                }
+            });
+        }
+
+        function saveHistory(bmi) {
+            const history = document.getElementById('history');
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `<span>${new Date().toLocaleDateString()}</span> <b>${bmi} BMI</b>`;
+            history.prepend(item);
+
+            // Save to LocalStorage (simple version)
+            localStorage.setItem('lastBMI', bmi);
+        }
+
+        // Auto-load last result
+        window.onload = () => {
+            const last = localStorage.getItem('lastBMI');
+            if (last) {
+                document.getElementById('bmiVal').innerText = last;
+                drawGauge(last, '#4facfe');
+            }
+        };
+    </script>
+
+</body>
+
+</html>
